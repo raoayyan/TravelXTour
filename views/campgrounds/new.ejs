@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow mb-3 mt-2">
+                <div class="card-body">
+                    <h1>Add new campground</h1>
+                    <form action="/campgrounds" method="post" novalidate class="validatefrom"
+                        enctype="multipart/form-data">
+                        <div>
+                            <label class="form-label" for="tlt">Title</label><br>
+                            <input class="form-control" type="text" name="campground[title]" id="tlt" required>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="loc">Locatiion</label><br>
+                            <input class="form-control" type="text" name="campground[location]" id="loc" required>
+                        </div>
+                        
+                        <!-- <div>
+                    <label class="form-label" for="tlt1">Image url</label><br>
+                    <input class="form-control" type="text" name="campground[image]" id="tlt1" required>
+                       </div> -->
+                        <div class="mb-1 mt-1">
+                            <label for="formFileMultiple" class="form-label"><b>Add images</b></label>
+                            <input class="form-control" type="file" id="image" name="image" multiple>
+                        </div>
+                        
+                        <div>
+                            <label class="form-label" for="tlt2">Description</label><br>
+                            <textarea class="form-control" type="text" name="campground[description]" id="tlt2"
+                                required></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="form-label" for="tlt3">Price</label><br>
+                            <input class="form-control" type="number" name="campground[price]" id="tlt3" required>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary mb-3">Add Campground</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

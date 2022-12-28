@@ -1,0 +1,60 @@
+<% layout('layouts/boilerplate') %>
+
+
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Edit campground</h1>
+            <form action="/campgrounds/<%= campi._id %>?_method=PUT" method="post" novalidate class="validatefrom" enctype="multipart/form-data">
+                <div>
+                    <label class="form-label" for="tlt"><b>Title</b> </label>
+                    <input class="form-control" type="text" name="campground[title]" id="tlt"
+                        value="<%= campi.title %> " required>
+                </div>
+
+                <div>
+                    <label class="form-label" for="loc"><b>Locatiion</b> </label>
+                    <input class="form-control" type="text" name="campground[location]" id="loc"
+                        value="<%= campi.location %> " required>
+                </div>
+                  
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label"><b>Add images</b></label>
+                    <input class="form-control" type="file" id="image" name="image" multiple>
+                  </div>
+
+
+
+                <!-- <div>
+                    <label class="form-label" for="loc1"><b>Add images </b> </label>
+                    <input type="file" name="image" id="image" multiple>
+                </div> -->
+                <div>
+                    <label class="form-label" for="loc2"><b>description</b> </label>
+                    <textarea class="form-control" name="campground[description]" id="loc2"
+                        value="<%= campi.description %> " required><%= campi.description %></textarea>
+                </div>
+
+                <div>
+                    <label class="form-label" for="loc5"><b>Price</b> </label>
+                    <input class="form-control" type="text" name="campground[price]" id="loc5"
+                        value="<%= campi.price %> " required>
+                </div>
+                <div class="mb-3 mt-3">
+                    <% campi.image.forEach(function(img,i){ %> 
+                        <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                        <div class="form-check-inline">
+                            <input type="checkbox" name="deleteImages[]" value="<%=img.filename%>" id="image-<%=i%>">
+                            <label for="image-<%=i%>">Delete</label>
+                        </div>
+                       
+                    <% }) %> 
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary ">Edit</button>
+                    <a href="/campgrounds/<%= campi._id %> " class="btn btn-primary m-2">Back</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>

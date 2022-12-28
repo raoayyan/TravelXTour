@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate') %> 
+ <div id="map" style="width: 100%; height: 500px;"></div>
+ <h1>All campgrounds</h1>
+
+   <div class="container"> 
+        <% for (let cp of camps) {%>
+
+            <div class="card mb-3 " >
+              <div class="row">
+                <div class="col-md-4">
+              <% if(cp.image.length) {%> 
+                <img class="card-img" src="<%= cp.image[0].url %> " alt="Card image cap">
+                <% }else{ %>
+                  <img class="card-img" src="" alt="Card image cap">
+                  <% } %>
+                </div> 
+                <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= cp.title %></h5>
+                  <p class="card-text"><%= cp.location %> </p>
+                  <p class="card-text"><%= cp.description %> </p>
+                  <a href="/campgrounds/<%= cp._id %>" class="btn btn-primary">View Camp</a>
+                </div>
+              </div>
+              </div>
+              </div>
+            <% } %>  
+            
+            </div>
+          <script>
+            const mapToken = '<%-process.env.MAPBOX_TOKEN%>';// by this if in future we change our access token key then we just have to change in .env file not in all places wher we use it...
+            const campgrounds = {features:<%-JSON.stringify(camps)%>}
+          </script>
+
+<script src="/javascript/clustermap.js"></script>
