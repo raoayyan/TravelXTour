@@ -75,6 +75,7 @@ app.use(session(sessionConfig))
 
 app.use(flash());
 
+//this commetn is just checking that projrct is uploaded on git
 
 // const scriptSrcUrls = [
 //      "https://stackpath.bootstrapcdn.com/",
