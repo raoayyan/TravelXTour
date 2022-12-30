@@ -71,7 +71,7 @@ const secret = process.env.SECRET || 'thisistopsecret';
 //   }));
 
 const sessionConfig = {
-    store: MongoDBStore.create({ mongoUrl: dbUrl }),
+    store:new MongoDBStore.create({ mongoUrl: dbUrl }),
     name:'session',
     secret,
     resave : true,
