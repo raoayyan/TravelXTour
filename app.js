@@ -41,6 +41,7 @@ const app = express();
 //       process.exit(1);
 //     }
 //   }
+
  mongoose.connection;
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
