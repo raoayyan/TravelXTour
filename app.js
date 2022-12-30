@@ -34,14 +34,14 @@ const app = express();
 
 const connectDB = async () => {
     try {
-      const conn = await mongoose.connect(process.env.dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+      const conn = await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
       console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
       console.log(error);
       process.exit(1);
     }
   }
-
+ mongoose.connection;
 // mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 // const db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error'))
@@ -200,6 +200,6 @@ const port = process.env.PORT || 3000;
 
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log(`workinf at port ${port}`);
+        console.log(`working at port ${port}`);
     })
 })
