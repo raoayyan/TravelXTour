@@ -1,9 +1,9 @@
-if(process.env.NODE_ENV !== 'production'){  //bcz of this we are always running .env file bcz we r in dev mode 
-    require('dotenv').config();
-}                                          //process.env.variable_name here variable _name is variable stored in .env file 
+// if(process.env.NODE_ENV !== 'production'){  //bcz of this we are always running .env file bcz we r in dev mode 
+    
+// }                                          //process.env.variable_name here variable _name is variable stored in .env file 
 //we are in development mode..............
 
-
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose');
 const methodOverrride = require('method-override');
