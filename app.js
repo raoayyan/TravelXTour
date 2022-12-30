@@ -69,7 +69,7 @@ const secret = process.env.SECRET || 'thisistopsecret';
 //     touchAfter:24*60*60,
 //     secret,
 //   }));
-
+//
 const sessionConfig = {
     store:MongoDBStore.create({
     mongoUrl:dbUrl,
