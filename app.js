@@ -32,23 +32,22 @@ const dbUrl =process.env.DB_URL|| 'mongodb://localhost:27017/yelp-camp';
 // 
 const app = express();
 
-// const connectDB = async () => {
-//     try {
-//       const conn = await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-//       console.log(`MongoDB Connected: ${conn.connection.host}`);
-//     } catch (error) {
-//       console.log(error);
-//       process.exit(1);
-//     }
-//   }
-
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
  mongoose.connection;
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'))
-db.once('open', () => {
-    console.log('Database connected')
-})
+// mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error'))
+// db.once('open', () => {
+//     console.log('Database connected')
+// })
 
 
 const path = require('path');
@@ -135,7 +134,7 @@ app.use(flash());
 //             imgSrc:[
 //                 "'self' data:",
 //                 "blob:",
-                    
+                
 //                 "https://res.cloudinary.com/dxarzcxrv/",
 //                 "https://images.unsplash.com/",
 //                 "https://media.istockphoto.com/id/1305448692/photo/shot-of-a-cute-vintage-teapot-in-a-campsite-near-to-lake.jpg?b=1&s=170667a&w=0&k=20&c=8dCGk9eoRrR1BTP3zzREFlqNwQZd5k0aXbRooRWBuU4="
@@ -197,6 +196,10 @@ app.use((err, req, res, next) => {
     res.render('error', { err })
 })
 const port = process.env.PORT || 3000;
+
+
+connectDB().then(() => {
     app.listen(port, () => {
         console.log(`working at port ${port}`);
     })
+})
