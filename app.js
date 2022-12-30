@@ -32,6 +32,7 @@ const dbUrl =process.env.DB_URL|| 'mongodb://localhost:27017/yelp-camp';
 // 
 const app = express();
 
+mongoose.connection;
 const connectDB = async () => {
     try {
       const conn = await mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -41,7 +42,7 @@ const connectDB = async () => {
       process.exit(1);
     }
   }
- mongoose.connection;
+
 // mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 // const db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error'))
@@ -62,18 +63,18 @@ app.use(express.static((__dirname, 'public'))); // this is use to public any thi
 
 const secret = process.env.SECRET || 'thisistopsecret';
 
-const store = app.use(session({
+// const storeD = app.use(session({
    
-    store: MongoDBStore.create({ mongoUrl: dbUrl }),
-    touchAfter:24*60*60,
-    secret,
-  }));
+//     store: MongoDBStore.create({ mongoUrl: dbUrl }),
+//     touchAfter:24*60*60,
+//     secret,
+//   }));
 
 const sessionConfig = {
-    store,
+    store: MongoDBStore.create({ mongoUrl: dbUrl }),
     name:'session',
     secret,
-    resave : false,
+    resave : true,
     saveUninitialized : true,
     cookie:{
         httpOnly:true, //this means that our cookies will not be accessible by javascript
